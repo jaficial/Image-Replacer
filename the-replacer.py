@@ -21,10 +21,36 @@ def asciiConvert(image, type, saveas, scale):
     pix = img.load()
     for y in range(h):
         for x in range(w):
-            if sum()
+            if sum(pix[x, y]) == 0:
+                grid[y][x] = '#'
+            elif sum(pix[x, y]) == range(1, 100):
+                grid[y][x] = "X"
+            elif sum(pix[x, y]) == range(101, 200):
+                grid[y][x] = "%"
+            elif sum(pix[x, y]) == range(201, 300):
+                grid[y][x] = "&"
+            elif sum(pix[x, y]) == range(301, 400):
+                grid[y][x] = "+"
+            elif sum(pix[x,y]) == range(401, 500):
+                grid[y][x] = "@"
+            elif sum(pix[x, y]) == range(501, 600):
+                grid[y][x] = "o"
+            elif sum(pix[x, y]) == range(601, 700):
+                grid[y][x] = "H"
+            elif sum(pix[x, y]) == range(701, 800):
+                grid[y][x] = "G"
+            elif sum(pix[x, y]) == range(801, 900):
+                grid[y][x] = "M" 
+            elif sum(pix[x, y]) == range(901, 999):
+                grid[y][x] = "W"
+            else:
+                grid[y][x] = ' '
+    art = open(saveas, "w")
 
-for infile in glob.glob("*.jpg"):
-    file, ext = os.path.splitext(infile)
-    with Image.open(infile) as im:
-        im.thumbnail(size)
-        im.save(file + ".thumbnail", "JPEG")
+    for row in grid:
+        art.write("".join(row) + "\n")
+    art.close()
+
+if __name__ == "__main__":
+    asciiConvert('dogtest.jpeg', 'jpeg', 'dogtestASCII.txt', '3')
+
